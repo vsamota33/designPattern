@@ -15,6 +15,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 
+import java.text.DecimalFormat;
+import java.util.Arrays;
+
 @Service
 public class DiseaseShStrategy implements IndianDiseaseStat {
 
@@ -33,21 +36,27 @@ public class DiseaseShStrategy implements IndianDiseaseStat {
     @Override
     public String GetActiveCount() {
     	//write a try catch block here
-    	
-    	//try block
-    	
-	    	//obtain response from the getDiseaseShResponseResponses() method
-	    	//store it in an object
-	    	
-    		//get the response using the getCases() method
-	    	//return the response after rounding it up to 0 decimal places
-    	
-    	
-    	//catch block
-    		//log the error
-    	
-    		//return null
-    	
+
+        try {
+            //try block
+
+            //obtain response from the getDiseaseShResponseResponses() method
+            //store it in an object
+
+            DiseaseShResponse response = getDiseaseShResponseResponses();
+            return new DecimalFormat("#").format(response.getCases());
+
+            //get the response using the getCases() method
+            //return the response after rounding it up to 0 decimal places
+        }
+    	catch (Exception e){
+            //catch block
+            //log the error
+
+                logger.error(e.getMessage());
+                return null;
+
+        }
     	
     }
 

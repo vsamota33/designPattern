@@ -17,6 +17,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class JohnHopkinsStrategy implements IndianDiseaseStat {
 
@@ -41,6 +46,25 @@ public class JohnHopkinsStrategy implements IndianDiseaseStat {
 			//Map the data to "confirmed" value (use getStats() and getConfirmed() to get stats value and confirmed value)
 			//Reduce the data to get a sum of all the "confirmed" values
 			//return the response after rounding it up to 0 decimal places
+
+		try{
+
+			List<Float> confirmedCountsForIndia = Arrays.stream(getJohnHopkinResponses())
+					.filter(response -> response.getCountry().equals("India"))
+					.map(response -> response.getStats().getConfirmed())
+					.collect(Collectors.toList());
+			float totalCount = 0;
+			for (float count : confirmedCountsForIndia) {
+				totalCount += count;
+			}
+			return new DecimalFormat("#").format(totalCount);
+
+		}
+		catch(Exception e){
+			logger.error(e.getMessage());
+			return null;
+		}
+
 		//catch block
 			//log the error
 			//return null

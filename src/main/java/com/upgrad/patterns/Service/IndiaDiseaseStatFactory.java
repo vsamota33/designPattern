@@ -29,6 +29,11 @@ public class IndiaDiseaseStatFactory {
     
     	//create a message for invalid disease strategy/sourceType
     	//throw the message as an Illegal argument exception
-    
-    
+
+    public IndianDiseaseStat GetInstance (SourceType sourceType) {
+        if (sourceType.equals(SourceType.DiseaseSh)) {
+            return this.diseaseShStrategy;
+        }
+        return this.johnHopkinsStrategy;
+    }
 }
