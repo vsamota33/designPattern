@@ -1,2 +1,2 @@
 # designPattern
-Java design pattern assignment from group project
+Java design pattern assignment from Upgrad group project
